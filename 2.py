@@ -1,4 +1,5 @@
 import random
+from matplotlib import pyplot as plt
 
 def Lanzamiento_de_dados():
 	dado_1=random.randint(1,6)
@@ -58,9 +59,21 @@ def su_probabilidad(n_de_numeros,Lanzamientos):
 		probabilidad.append(prob)
 		x = x + 1
 	print(probabilidad)
+	return probabilidad
 
+def el_grafico():
+	fig = plt.figure(u'Gráfica de barras') # Figure
+	grafico = fig.add_subplot(111)
+	numero_string = ["2","3","4","5","6","7","8","9","10","11","12"]
+	datos = [2,5,6,8,3,7,3,7,2,6,3]
+	xx = range(len(datos))
+	grafico.bar(xx, datos, width=0.8, align='center')
+	grafico.set_xticks(xx)
+	grafico.set_xticklabels(numero_string)
+	plt.show()
 
 Lanzamientos=Numero_de_lanzamientos()
 Lista_dados_1,Lista_dados_2,Suma_dados =  Ciclo(Lanzamientos)
 n_de_numeros = contar_cada_numero(Suma_dados)
-su_probabilidad(n_de_numeros,Lanzamientos)
+probabilidad = su_probabilidad(n_de_numeros,Lanzamientos)
+el_grafico()
